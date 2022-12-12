@@ -1,39 +1,7 @@
+import { useState } from "react"
 import styled, { ThemeProvider, keyframes } from "styled-components"
 
 import { Search } from "./components/Search"
-
-const result = [
-  {
-    id: "001",
-    name: "Schnauzer",
-    description:
-      "Lorem ipsum dolor asit met wacha wachero, dale like y comparte :D",
-  },
-  {
-    id: "002",
-    name: "Boxer",
-    description:
-      "Lorem ipsum dolor asit met wacha wachero, dale like y comparte :D",
-  },
-  {
-    id: "003",
-    name: "Gran Danes",
-    description:
-      "Lorem ipsum dolor asit met wacha wachero, dale like y comparte :D",
-  },
-  {
-    id: "004",
-    name: "Coker spaniel",
-    description:
-      "Lorem ipsum dolor asit met wacha wachero, dale like y comparte :D",
-  },
-  {
-    id: "005",
-    name: "Doberman",
-    description:
-      "Lorem ipsum dolor asit met wacha wachero, dale like y comparte :D",
-  },
-]
 
 const theme = {
   bg: "#EFF5F5",
@@ -43,20 +11,24 @@ const theme = {
 }
 
 function App() {
+  const [results, setResults] = useState([])
   return (
     <ThemeProvider theme={theme}>
       <Wrapper>
         <Header>
-          <Search />
+          <Search onResults={setResults} />
         </Header>
         <Results>
-          {result.map((b) => (
-            <BreedContainer>
+          {results.map((b, i) => (
+            <BreedContainer key={i}>
               <Img src="https://picsum.photos/id/237/300/200" />
               <Title>{b.name}</Title>
               <Description>{b.description}</Description>
             </BreedContainer>
           ))}
+          {results.length === 0 && (
+            <h3>No encontramos ninguna raza con ese nombre</h3>
+          )}
         </Results>
       </Wrapper>
     </ThemeProvider>
@@ -64,7 +36,6 @@ function App() {
 }
 
 export default App
-
 
 //Loader
 

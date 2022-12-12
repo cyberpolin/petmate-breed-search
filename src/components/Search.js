@@ -1,21 +1,45 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import styled, { keyframes } from "styled-components"
 
-export function Search({ placeholder }) {
+import fetchAPI from "../lib/fetchAPI"
+
+export function Search({ placeholder, url, onResults }) {
   const [searchTerm, setSearchTerm] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const timeoutRef = useRef()
 
   const hasSearch = searchTerm.length > 0
 
-  function onChangeText(e) {
+  async function search(searchTerm) {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    timeoutRef.current = setTimeout(async () => {
+      try {
+        setIsLoading(true)
+        const result = await fetchAPI.get(`breeds?search=${searchTerm}`)
+        onResults(result.data)
+      } catch (e) {
+        console.warn(e)
+      } finally {
+        setIsLoading(false)
+      }
+    }, 250)
+  }
+
+  async function onChangeText(e) {
     setSearchTerm(e.target.value)
+    search(e.target.value)
   }
 
   function onClose() {
     setSearchTerm("")
   }
 
+  useEffect(() => {
+    search("")
+  }, [])
+
   return (
-    <SearchWrapper isLoading={true}>
+    <SearchWrapper isLoading={isLoading}>
       <SearchInput
         placeholder={placeholder || "Busca una raza"}
         value={searchTerm}
