@@ -48,6 +48,8 @@ const Wrapper = styled.div`
   align-items: center;
   flex: 1;
   min-width: 100%;
+  margin: 0;
+  padding: 0;
 `
 
 const Header = styled.div`
