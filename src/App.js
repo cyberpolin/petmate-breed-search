@@ -21,7 +21,11 @@ function App() {
         <Results>
           {results.map((b, i) => (
             <BreedContainer key={i}>
-              <Img src="https://picsum.photos/id/237/300/200" />
+              <Img
+                src={b.images?.[0] || "https://picsum.photos/id/237/200"}
+                width="200"
+                height="200"
+              />
               <Title>{b.name}</Title>
               <Description>{b.description}</Description>
             </BreedContainer>
