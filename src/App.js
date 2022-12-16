@@ -22,7 +22,7 @@ function App() {
           {results.map((b, i) => (
             <BreedContainer key={i}>
               <Img
-                src={b.images?.[0] || "https://picsum.photos/id/237/200"}
+                src={`https://res.cloudinary.com/kondosoft-com/image/upload/v1671210157/petmate/breeds-api/${b.id}/01.png`}
                 width="200"
                 height="200"
               />
