@@ -45,7 +45,7 @@ export default function Home({ breeds }: HomeProps) {
           <Results>
             {results.map((b: BreedProps, i) => (
               <BreedContainer key={i}>
-                <Image
+                <Img
                   alt={b.name}
                   src={`https://res.cloudinary.com/kondosoft-com/image/upload/v1671210157/petmate/breeds-api/${b.id}/01.png`}
                   width="200"
