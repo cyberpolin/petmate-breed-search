@@ -1,12 +1,11 @@
 import Head from "next/head"
-import Image from "next/image"
+import Script from "next/script"
 import { Inter } from "@next/font/google"
 
 import styled, { ThemeProvider, keyframes } from "styled-components"
 
 import { Search } from "../components/Search"
 import { useState } from "react"
-import fetchAPI from "../lib/fetchAPI"
 
 const theme = {
   bg: "#EFF5F5",
@@ -64,6 +63,10 @@ export default function Home({ breeds }: HomeProps) {
           </Results>
         </Wrapper>
       </ThemeProvider>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-7ETYW4YDTE"
+      />
     </>
   )
 }
