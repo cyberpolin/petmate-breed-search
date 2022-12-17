@@ -68,7 +68,6 @@ export default function Home({ breeds }: HomeProps) {
 export async function getServerSideProps() {
   const res = await fetch("https://breeds-api.petmate.mobi/api/breeds")
   const data = await res.json()
-  console.log(">>> ", data)
   const breeds = data
 
   return {
@@ -80,7 +79,8 @@ export async function getServerSideProps() {
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.bg};
-  height: 100vh;
+  color: ${({ theme }) => theme.text};
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

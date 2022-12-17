@@ -69,6 +69,7 @@ const rotate = keyframes`
 `
 const SearchInput = styled.input`
   background-color: #33333300;
+  color: ${({ theme }) => theme.text};
   border: none;
   padding: 20px 0px;
   width: 100%;
